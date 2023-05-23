@@ -116,24 +116,49 @@ void inOrder(Node* root , vector<Node*> &temp){
     inOrder(root->right , temp);
 }
 
+void successor(Node* root , int key, Node*& suc){
+    if(root == NULL) return;
+    if(key >= root->key){
+        successor(root->right , key , suc);
+    }else{
+        suc = root;
+        successor(root->left , key , suc);
+    }
+    
+}
+
+void predecessor(Node* root , int key, Node*& pre){
+    if(root == NULL) return;
+    if(key <= root->key){
+        
+        predecessor(root->left , key , pre);
+    }else{
+       pre = root;
+        predecessor(root->right , key , pre);
+    }
+    
+}
+
 void findPreSuc(Node* root, Node*& pre, Node*& suc, int key)
 {
 
-pre = NULL;
-suc = NULL;
+// pre = NULL;
+// suc = NULL;
 
 // Your code goes here
-vector<Node*> temp;
-inOrder(root , temp);
+// vector<Node*> temp;
+// inOrder(root , temp);
 
-for(int i = 0 ; i < temp.size(); i++){
-    if(temp[i]->key < key) pre = temp[i];
-}
+// for(int i = 0 ; i < temp.size(); i++){
+//     if(temp[i]->key < key) pre = temp[i];
+// }
 
-for(int i = temp.size() - 1; i >= 0; i--){
-    if(temp[i]->key > key) suc = temp[i];
-}
+// for(int i = temp.size() - 1; i >= 0; i--){
+//     if(temp[i]->key > key) suc = temp[i];
+// }
 
+successor(root , key  , suc);
+predecessor(root , key , pre);
 
 
 }
