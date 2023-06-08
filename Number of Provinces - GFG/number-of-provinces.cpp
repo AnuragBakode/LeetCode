@@ -24,7 +24,7 @@ class Solution {
 //       vis[node] = 1;
       
 //       for(int i = 0 ; i < adj[node].size() ; i++){
-//           if(adj[node][i] == 1 && !vis[i]){
+//           if(node != i  && adj[node][i] == 1 && !vis[i]){
 //               dfs(i , adj , vis);
 //           }
 //       }
@@ -38,7 +38,7 @@ class Solution {
         
         for(int i = 0;  i < V ; i++){
             for(int j = 0 ;  j < V ; j++){
-                if(adj[i][j] == 1){
+                if(i != j && adj[i][j] == 1){
                     adjLs[i].push_back(j);
                     adjLs[j].push_back(i);
                 }
